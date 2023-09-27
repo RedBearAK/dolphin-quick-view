@@ -45,7 +45,8 @@ cp "$HERE"/quick_view.desktop ~/.local/share/kservices5/ServiceMenus/ || \
 ntfy_title="Quick View Installer"
 ntfy_icon="quickview"
 ntfy_msg="Quick View successfully installed"
-ntfy_time_ms="5000"
+ntfy_time_ms=5000
+ntfy_time_s=((${ntfy_time_ms}/1000))
 
 #send desktop notification
 if command -v gdbus >/dev/null 2>&1; then
@@ -58,7 +59,7 @@ elif command -v notify-send >/dev/null 2>&1; then
     notify-send --expire-time="${ntfy_time_ms}" --icon="${ntfy_icon}" \
         "${ntfy_title}" "${ntfy_msg}" >/dev/null
 elif command -v kdialog >/dev/null 2>&1; then
-    kdialog --title "${ntfy_title}" --passivepopup "${ntfy_msg}" ${ntfy_time_ms} >/dev/null
+    kdialog --title "${ntfy_title}" --passivepopup "${ntfy_msg}" "${ntfy_time_s}" >/dev/null
 else
     echo -e "\nINFO: Installer script cannot show 'success' desktop notification."
     echo "Reason: No suitable notification command available on system."
