@@ -8,7 +8,7 @@ HERE=${SELF%/*}
 
 exit_w_error() {
     local msg="$1"
-    echo -e "ERROR: ${msg} Exiting...\n"
+    echo -e "\nERROR: ${msg} Exiting...\n"
     exit 1
 }
 
@@ -18,7 +18,7 @@ if [[ ${EUID} -eq 0 ]]; then
 fi
 
 
-echo "Installing Quick View previewer for Dolphin..."
+echo -e "\nInstalling Quick View previewer for Dolphin..."
 
 mkdir -p ~/.config/quick_view || \
   exit_w_error "Failed to create install folder."
